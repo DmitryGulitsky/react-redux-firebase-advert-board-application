@@ -1,16 +1,12 @@
-import React, { Component } from 'react'
-import ProjectList from '../projects/ProjectList'
-import Notifications from './Notifications'
-import { connect } from 'react-redux'   //  подключаем компонент к redux-store
-
-import { firestoreConnect } from 'react-redux-firebase';
-import { compose } from 'redux';
+import React, { Component } from 'react';
+import ProjectList from '../projects/ProjectList';
+import Notifications from './Notifications';
 import { Redirect } from 'react-router-dom';
 
-class Dashboard extends Component {
+export default class Dashboard extends Component {
   render() {
     const { projects, auth, notifications } = this.props;
-    if (!auth.uid) return <Redirect to='/signin' />     // если не получен auth.uid пользователя, то перенаправить
+    if (!auth.uid) return <Redirect to='/signin' />;     // если не получен auth.uid пользователя, то перенаправить
 
     return (
       <div className="dashboard container">
@@ -26,20 +22,3 @@ class Dashboard extends Component {
     )
   }
 }
-
-const mapStateToProps = (state) => {
-  // console.log(state);
-  return {
-    projects: state.firestore.ordered.projects,
-    auth: state.firebase.auth,
-    notifications: state.firestore.ordered.notifications
-  }
-}
-
-export default compose(
-  connect(mapStateToProps),
-  firestoreConnect([
-    { collection: 'projects', orderBy: ['createdAt', 'desc']},  //  сортируем по дате создания
-    { collection: 'notifications', limit: 3, orderBy: ['time', 'desc']} // ограничиваем количество получаемых документов до 3
-  ])
-)(Dashboard)

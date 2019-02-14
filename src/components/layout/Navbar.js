@@ -1,10 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import SignedInLinks from './SignedInLinks' // кнопки панели навигации при успешной авторизации
-import SignedOutLinks from './SignedOutLinks'   // кнопки панели навигации без авторизации
-import { connect } from 'react-redux'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import SignedInLinks from './SignedInLinks'; // кнопки панели навигации при успешной авторизации
+import SignedOutLinks from './SignedOutLinks';   // кнопки панели навигации без авторизации
 
-const Navbar = (props) => {
+export const Navbar = (props) => {
   const { auth, profile } = props;
   console.log('Navbar auth - ',auth);
   console.log('Navbar profile - ',profile);
@@ -19,13 +18,3 @@ const Navbar = (props) => {
     </nav>
   )
 };
-
-const mapStateToProps = (state) => {
-  // console.log(state);
-  return{
-    auth: state.firebase.auth,
-    profile: state.firebase.profile
-  }
-};
-
-export default connect(mapStateToProps)(Navbar)
