@@ -33,16 +33,16 @@ export default class ItemsTable extends Component {
       displayForm: false,
       tableData: {}
     };
-    this.handleGetStudentsById = this.handleGetStudentsById.bind(this);
-    this.handleGetTeachersById = this.handleGetTeachersById.bind(this);
-    this.handleGetGroupsById = this.handleGetGroupsById.bind(this);
+    //this.handleGetStudentsById = this.handleGetStudentsById.bind(this);
+    //this.handleGetTeachersById = this.handleGetTeachersById.bind(this);
+    //this.handleGetGroupsById = this.handleGetGroupsById.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleDelete = this.handleDelete.bind(this);
-    this.handleAddItemForm = this.handleAddItemForm.bind(this);
-    this.handleUpdateItemForm = this.handleUpdateItemForm.bind(this);
-    this.handleShowAllItems = this.handleShowAllItems.bind(this);
-    this.handleShowItemsById = this.handleShowItemsById.bind(this);
-    this.handleHideForm = this.handleHideForm.bind(this);
+    //this.handleDelete = this.handleDelete.bind(this);
+    //this.handleAddItemForm = this.handleAddItemForm.bind(this);
+    //this.handleUpdateItemForm = this.handleUpdateItemForm.bind(this);
+    //this.handleShowAllItems = this.handleShowAllItems.bind(this);
+    //this.handleShowItemsById = this.handleShowItemsById.bind(this);
+    //this.handleHideForm = this.handleHideForm.bind(this);
   }
 
   handleChange = event => {
@@ -113,13 +113,12 @@ export default class ItemsTable extends Component {
 
   render() {
 
+    console.log('this.props items table - ', this.props);
+
     const columns = [
       {
-        Header: 'ID',
-        accessor: 'id',
-        width: 100,
-        maxWidth: 100,
-        minWidth: 50
+        Header: 'Email',
+        accessor: 'email',
       },
       {
         Header: 'First Name',
@@ -128,6 +127,10 @@ export default class ItemsTable extends Component {
       {
         Header: 'Last Name',
         accessor: 'lastName'
+      },
+      {
+        Header: 'Phone',
+        accessor: 'phone'
       },
       {
         Header: 'Delete/Update',
@@ -154,16 +157,13 @@ export default class ItemsTable extends Component {
         minWidth: 120
       }
     ];
-  }
 
     return (
         <Fragment>
-
-
             <ReactTable
                 id="react-table"
                 columns={columns}
-                data={this.tableData}
+                data={this.props.users}
                 filterable
                 sortable
                 defaultPageSize={5}
@@ -183,46 +183,6 @@ export default class ItemsTable extends Component {
                 );
               }}
             </ReactTable>
-
-            <div className="buttons-container">
-              <button
-                  className="btn btn-primary fa fa-cloud-download"
-                  onClick={this.export}> Export table content to Excel
-              </button>
-
-              <ExcelExport
-                  data={this.tableData}
-                  fileName="export.xlsx"
-                  ref={(exporter) => {
-                    this._exporter = exporter;
-                  }}
-              >
-                <ExcelExportColumn field="id" title="id" width={200}/>
-                <ExcelExportColumn field="firstName" title="First Name"
-                                   width={350}/>
-                <ExcelExportColumn field="lastName" title="Last Name"
-                                   width={350}/>
-              </ExcelExport>
-              <button type="button"
-                      className="fa fa-plus-square btn btn-success"
-                      onClick={this.handleAddItemForm}> Add new item to data
-                base
-              </button>
-              {dropZone}
-            </div>
-
-          <div className="add-update-form">
-            <div
-                id="exitButton"
-                className="exit-button"
-                onClick={this.handleHideForm}
-            >X
-            </div>
-            {addUpdateItemForm}
-          </div>
-
-          <UploadPopupContainer />
-
         </Fragment>
     );
   }

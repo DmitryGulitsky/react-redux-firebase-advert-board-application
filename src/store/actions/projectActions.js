@@ -7,12 +7,14 @@ export const createProject = (project) => {
       ...project,
       authorFirstName: profile.firstName,
       authorLastName: profile.lastName,
-      // category: category,
-      // description: description,
-      // price: price,
-      // title: title,
+      category: project.category,
+      description: project.description,
+      price: project.price,
+      title: project.title,
       authorId: authorId,
-      createdAt: new Date()
+      createdAt: new Date(),
+      modifiedAt: '',
+      views: 0
     }).then(() => {
       dispatch({ type: 'CREATE_PROJECT_SUCCESS' });
     }).catch(err => {

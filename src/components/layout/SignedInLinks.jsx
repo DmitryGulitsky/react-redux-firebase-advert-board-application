@@ -6,14 +6,21 @@ import { signOut } from '../../store/actions/authActions'
 const SignedInLinks = (props) => {
   return (
     <div>
-      <ul className="right">
+      <ul className="d-flex">
         <li><NavLink to='/users'>Users</NavLink></li>
         <li><NavLink to='/create'>New Advert</NavLink></li>
-        <li><a onClick={props.signOut}>Log Out</a></li>
-        <li><NavLink to='/' className="btn btn-floating red lighten-1">
-          {props.profile.initials}
-        </NavLink></li>
+        <div className="btn-group initials" role="group" aria-label="Basic example">
+            <NavLink to='/profile' className="btn btn-info">
+              {props.profile.initials}
+            </NavLink>
+          <button
+              type="button"
+              className="btn btn-danger"
+              onClick={props.signOut}
+          >Sign Out</button>
+        </div>
       </ul>
+
     </div>
   )
 };

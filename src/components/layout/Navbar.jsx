@@ -10,10 +10,12 @@ export const Navbar = (props) => {
   const links = auth.uid ? <SignedInLinks profile={profile} /> : <SignedOutLinks />;  // если получен auth.uid пользователя, то отображать соотв.компонент
 
   return (
-    <nav className="nav-wrapper grey darken-3">
-      <div className="container">
-        <Link to='/' className="brand-logo">Advert Board</Link>
-        {links}
+    <nav>
+      <div className="header d-flex gradient-background">
+        <h3>
+          <Link to='/' className="brand-logo">Advert Board</Link>
+        </h3>
+          {links}
       </div>
     </nav>
   )

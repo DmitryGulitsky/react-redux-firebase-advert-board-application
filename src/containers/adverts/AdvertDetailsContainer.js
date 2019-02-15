@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import {ProjectDetails} from '../../components/projects/ProjectDetails';
+import {AdvertDetails} from '../../components/adverts/AdvertDetails';
 
 const mapStateToProps = (state, ownProps) => {
   // console.log(state);
@@ -15,12 +15,12 @@ const mapStateToProps = (state, ownProps) => {
   }
 };
 
-const ProjectDetailsContainer = compose(
+const AdvertDetailsContainer = compose(
     connect(mapStateToProps),
     firestoreConnect([{
       collection: 'projects'
     }])
 )(
-    ProjectDetails);
+    AdvertDetails);
 
-export default ProjectDetailsContainer;
+export default AdvertDetailsContainer;

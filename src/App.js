@@ -4,11 +4,12 @@ import NavbarContainer from '../src/containers/layout/NavbarContainer';   // п�
 import SignInContainer from './containers/auth/SignInContainer';  // форма для входа
 import SignUpContainer from './containers/auth/SignUpContainer';   // форма для создания пользователя
 import DashboardContainer from './containers/dashboard/DashboardContainer';  // информационная панель
-import CreateProjectContainer
-  from './containers/projects/CreateProjectContainer';  // форма для создания объявления
-import ProjectDetailsContainer
-  from './containers/projects/ProjectDetailsContainer';
+import CreateAdvertContainer
+  from './containers/adverts/CreateAdvertContainer';  // форма для создания объявления
+import AdvertDetailsContainer
+  from './containers/adverts/AdvertDetailsContainer';
 import UsersContainer from './containers/users/UsersContainer'; // список пользователей
+import ProfileContainer from './containers/profile/ProfileContainer'; // данные текущего профиля пользователя
 
 class App extends Component {
   render() {
@@ -17,12 +18,13 @@ class App extends Component {
         <div className="App">
           <NavbarContainer />
           <Switch>
-            <Route path='/users' component={UsersContainer} />
-            <Route exact path='/' component={DashboardContainer} />
-            <Route path='/project/:id' component={ProjectDetailsContainer} />
-            <Route path='/signin' component={SignInContainer} />
-            <Route path='/signup' component={SignUpContainer} />
-            <Route path='/create' component={CreateProjectContainer} />
+            <Route path="/profile" component={ProfileContainer} />
+            <Route path="/users" component={UsersContainer} />
+            <Route exact path="/" component={DashboardContainer} />
+            <Route path="/advert/:id" component={AdvertDetailsContainer} />
+            <Route path="/signin" component={SignInContainer} />
+            <Route path="/signup" component={SignUpContainer} />
+            <Route path="/create" component={CreateAdvertContainer} />
           </Switch>
         </div>
       </BrowserRouter>

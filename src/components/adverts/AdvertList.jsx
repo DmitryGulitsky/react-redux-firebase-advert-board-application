@@ -1,14 +1,14 @@
 import React from 'react';
-import ProjectSummary from './ProjectSummary';
+import AdvertSummary from './AdvertSummary';
 import { Link } from 'react-router-dom';
 
-const ProjectList = ({projects}) => {
+const AdvertList = ({projects}) => {
   return (  //  выводим на экран каждый элемент с условием, что имеем {projects}. id уникален, присвоен на сервере
     <div className="project-list section">
       { projects && projects.map(project => {
         return (
-          <Link to={'/project/' + project.id} key={project.id}>
-            <ProjectSummary project={project} />
+          <Link to={'/advert/' + project.id} key={project.id}>
+            <AdvertSummary project={project} />
           </Link>
         )
       })}  
@@ -16,4 +16,4 @@ const ProjectList = ({projects}) => {
   )
 };
 
-export default ProjectList
+export default AdvertList

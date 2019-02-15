@@ -18,7 +18,6 @@ const DashboardContainer = compose(
       { collection: 'projects', orderBy: ['createdAt', 'desc']},  //  сортируем по дате создания
       { collection: 'notifications', limit: 3, orderBy: ['time', 'desc']} // ограничиваем количество получаемых документов до 3
     ])
-)(
-    Dashboard);
+)(Dashboard);
 
 export default DashboardContainer;

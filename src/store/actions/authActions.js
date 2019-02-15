@@ -46,3 +46,28 @@ export const signUp = (newUser) => {
     });
   }
 };
+
+export const updateUser = (user) => {
+  return (dispatch, getState, {getFirebase, getFirestore}) => {
+    const firebase = getFirebase();
+    const firestore = getFirestore();
+
+
+    firebase.auth().createUserWithEmailAndPassword(   //  указываем метод создания user с помощью email
+      user.email,
+      user.password
+    ).then(resp => {
+      return firestore.collection('users').doc(resp.user.uid).set({   // в коллекции users в бд создаем новый документ
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        phone: user.phoneNumber,
+        initials: user.firstName[0] + user.lastName[0]
+      });
+    }).then(() => {
+      dispatch({ type: 'UPDATE_USER_SUCCESS' });
+    }).catch((err) => {
+      dispatch({ type: 'UPDATE_USER_ERROR', err});
+    });
+  }
+};

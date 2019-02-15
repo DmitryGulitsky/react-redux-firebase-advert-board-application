@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';  // подключаем компонент к redux srore
 import { createProject } from '../../store/actions/projectActions';
-import CreateProject from '../../components/projects/CreateProject';
+import CreateAdvert from '../../components/adverts/CreateAdvert';
 
 const mapStateToProps = (state) => {
   return {
@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-const CreateProjectContainer = connect(mapStateToProps, mapDispatchToProps)(
-    CreateProject);
+const CreateAdvertContainer = connect(mapStateToProps, mapDispatchToProps)(
+    CreateAdvert);
 
-export default CreateProjectContainer;
+export default CreateAdvertContainer;
